@@ -1,1 +1,53 @@
 #Hello po! Here's our file ^^
+class GameAnswer
+  pass
+
+'''
+The Category class collects the questions for each topic. It is also the superclass for topics which are the subclasses
+'''
+class Category
+  def __init__(self, topic_name, question)
+    self.topic_name = topic_name           #This will be the chosen topic for the game.
+    self.question = question               #This will be for the questions.
+
+  def get_topic_name(self):
+      '''
+      This returns the name of the topic
+      '''
+      return self.topic_name = self.topic_name
+  
+  def get_questions(self):
+      '''
+      This will return the questions for that topic
+      '''
+      return self.questions
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class Faculty(Category):
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class Facilities(Category):
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class History(Category):
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class OnlineLearningSystem(Category):
+
+
+class Player
+  pass
+
+class GameLogic
+  pass
+
+class Grid
+  pass
