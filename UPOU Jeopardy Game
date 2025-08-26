@@ -44,8 +44,12 @@ This is a topic which will inherit from the class Category.
 class OnlineLearningSystem(Category):
 
 
-class Player
-  pass
+class Player:
+  def __init__(self, username):
+    """ Initialize player with a name, zero starting score, and zero attempts."""
+  self.name = name
+  self.score = 0
+  self.attempts = 0
 
 class GameLogic
   pass
