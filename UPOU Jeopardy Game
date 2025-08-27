@@ -1,1 +1,58 @@
-#Hello po! Here's our file ^^
+#This is Group F's file for our Jeopardy game about UPOU!
+#Members:Jannah Chrizale Biñas, Jean Kyla Dalay, Aeryel Sofia Favorada, Alexene Irish Galang, Aaliyah Lexine Jade Huerto, Penelope Mendoza
+class GameAnswer
+  pass
+
+'''
+The Category class collects the questions for each topic. It is also the superclass for topics which are the subclasses
+'''
+class Category
+  def __init__(self, topic_name, question)
+    self.topic_name = topic_name           #This will be the chosen topic for the game.
+    self.question = question               #This will be for the questions.
+
+  def get_topic_name(self):
+      '''
+      This returns the name of the topic
+      '''
+      return self.topic_name = self.topic_name
+  
+  def get_questions(self):
+      '''
+      This will return the questions for that topic
+      '''
+      return self.questions
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class Faculty(Category):
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class Facilities(Category):
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class History(Category):
+
+'''
+This is a topic which will inherit from the class Category.
+'''
+class OnlineLearningSystem(Category):
+
+
+class Player:
+  def __init__(self, username):
+    """ Initialize player with a name, zero starting score, and zero attempts."""
+  self.name = name
+  self.score = 0
+  self.attempts = 0
+
+class GameLogic
+  pass
+
+class Grid
+  pass
