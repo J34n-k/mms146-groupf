@@ -17,17 +17,18 @@ class GameGrid:
     
     def get_available_questions(self):
         available = {}
-        for cat in self.__categories:
-            available_vals = cat.get_available_values()
+        for category in self.__categories:
+            available_vals = category.get_available_values()
             if available_vals:
-                available[cat.get_name()] = available_vals
+                available[category.get_name()] = available_vals
         return available
     
     def mark_answered(self, category_name, value):
-        for cat in self.__categories:
-            if cat.get_name() == category_name:
-                question = cat.get_question(value)
+        for category in self.__categories:
+            if category.get_name() == category_name:
+                question = category.get_question(value)
                 if question:
                     question.mark_answered()
                     return True
+
         return False
