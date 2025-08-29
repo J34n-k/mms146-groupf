@@ -13,7 +13,6 @@ class Player:
     Keeps track of how many players have been created (max 3).
     """
 
-  # Class attributes
     max_players = 3
     _players_created = 0
 
@@ -52,11 +51,10 @@ class Player:
         self._attempts += 1
 
     def reset_score(self):
-        """Reset score and attempts (e.g., for a new game)."""
+        """Reset score and attempts (for a new game)."""
         self._score = 0
         self._attempts = 0
 
-#Utility
     def __str__(self):
         """String representation of the player (for display/debugging)."""
         return f"Player: {self._name}, Score: {self._score}, Attempts: {self._attempts}"
