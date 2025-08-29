@@ -45,11 +45,7 @@ class OnlineLearningSystem(Category):
 
 
 class Player:
-  def __init__(self, username):
-    """ Initialize player with a name, zero starting score, and zero attempts."""
-  self.name = name
-  self.score = 0
-  self.attempts = 0
+  pass
 
 class GameLogic
   pass
