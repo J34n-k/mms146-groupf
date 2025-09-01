@@ -1,8 +1,3 @@
-#This is Group F's file for our Jeopardy game about UPOU!
-#Members:Jannah Chrizale Biñas, Jean Kyla Dalay, Aeryel Sofia Favorada, Alexene Irish Galang, Aaliyah Lexine Jade Huerto, Penelope Mendoza
-class GameAnswer
-  pass
-
 '''
 The Category class collects the questions for each topic. It is also the superclass for topics which are the subclasses
 '''
