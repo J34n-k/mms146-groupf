@@ -38,12 +38,3 @@ This is a topic which will inherit from the class Category.
 '''
 class OnlineLearningSystem(Category):
 
-
-class Player:
-  pass
-
-class GameLogic
-  pass
-
-class Grid
-  pass
