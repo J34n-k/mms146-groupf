@@ -18,23 +18,45 @@ class Category
       '''
       return self.questions
 
-'''
-This is a topic which will inherit from the class Category.
-'''
-class Faculty(Category):
+class Faculty(Category):      #This will inherit the attribute "question" from the Category class
+  def __init__(self, name, role):
+  super().__init__(question)
+  self.name = name
+  self.role = role
 
-'''
-This is a topic which will inherit from the class Category.
-'''
-class Facilities(Category):
+  def get_name(self):
+    return self.name
 
-'''
-This is a topic which will inherit from the class Category.
-'''
-class History(Category):
+  def get_role(self):
+    return self.role
 
-'''
-This is a topic which will inherit from the class Category.
-'''
-class OnlineLearningSystem(Category):
+class Facilities(Category):     #This will inherit the attribute "question" from the Category class
+  def __init__(self, facility_no, facility_name, facility_use):
+  super().__init__(question)
+  self.facility_no = facility_no
+  self.facility_name = facility_name
+  self.facility_use = facility_use
+
+  def get_faciluty_no(self):
+    return self.facility_no
+
+  def get_facility_name(self):
+    return self.facility_name
+
+  def get_facility_use(self):
+    return self.facility_use
+
+class History(Category):     #This will inherit the attribute "question" from the Category class
+  def __init_(self, year, rank, first_program, physical_campus, symbol, global_organization):
+  super().__init__(question)
+  self.year = year
+  self.rank = rank
+  self.first_program = first_program
+  self.physical_campus = physical_campus
+  self.symbol = symbol
+  self.global_organization = global_organization
+
+  def get_year
+
+class OnlineLearningSystem(Category):     #This will inherit the attribute "question" from the Category class
 
