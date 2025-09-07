@@ -1,28 +1,68 @@
-import pygame, sys                              #imports the pygame and sys modules
+import pygame, sys
+from button import Button
 
-pygame.init()                                   #initializes all the pygame modules
+pygame.init()
 
-SCREEN = pygame.display.set_mode((1280, 720))  #sets the display window size
-pygame.display.set_caption("Jeopardy!")         #sets the window title
+SCREEN = pygame.display.set_mode((1280, 720))
+pygame.display.set_caption("Menu")
 
-BG = pygame.color.Color("#000000")              #sets the background color to black
+BG = pygame.image.load("assets/Background.png")
 
-def play():                                    #Play screen 
+def get_font(size): # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("assets/Fredoka.ttf", size)
 
-def main_menu():                               #Main menu screen
-    pygame.display.set_caption("Menu")         #sets the window title
+def main_menu():
+    while True:
+        SCREEN.blit(BG, (0, 0))
 
-    while True:                                #main loop
-        SCREEN.blit(BG, (0, 0))                #fills the screen with the background color
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_MOUSE_POS = pygame.mouse.get_pos()  #gets the current mouse position
+        PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 300), 
+                            text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 500), 
+                            text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
-        MENU_TEXT = pygame.font.Font(None, 100).render("Main Menu", True, (255, 255, 255))  #renders the main menu text
-        MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
-
-        PLAY_BUTTON = pygame.Rect(540, 200, 200, 50)  #creates a rectangle for the play button
-        QUIT_BUTTON = pygame.Rect(540, 300, 200, 50)   #creates a rectangle for the quit button
-
-        Screen.blit(MENU_TEXT, MENU_RECT)  #draws the main menu text on the screen
+        for button in [PLAY_BUTTON, QUIT_BUTTON]:
+            button.change_color(MENU_MOUSE_POS)
+            button.update(SCREEN)
         
-main_menu()                                    #calls the main_menu function to start the program
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    play()
+                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pygame.quit()
+                    sys.exit()
+
+        pygame.display.update()
+
+def play():
+    while True:
+        SCREEN.fill("black")
+
+        PLAY_MOUSE_POS = pygame.mouse.get_pos()
+
+        PLAY_TEXT = get_font(45).render("This is the PLAY screen.", True, "White")
+        PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
+        SCREEN.blit(PLAY_TEXT, PLAY_RECT)
+
+        PLAY_BACK_BUTTON = Button(image=None, pos=(640, 460), 
+                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
+
+        PLAY_BACK_BUTTON.changeColor(PLAY_MOUSE_POS)
+        PLAY_BACK_BUTTON.update(SCREEN)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if PLAY_BACK_BUTTON.checkForInput(PLAY_MOUSE_POS):
+                    main_menu()
+
+        pygame.display.update()
+
+main_menu()
