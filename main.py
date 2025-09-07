@@ -31,9 +31,9 @@ def main_menu():
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                if PLAY_BUTTON.check_for_input(MENU_MOUSE_POS):
                     play()
-                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                if QUIT_BUTTON.check_for_input(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
 
@@ -45,14 +45,14 @@ def play():
 
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
-        PLAY_TEXT = get_font(45).render("This is the PLAY screen.", True, "White")
-        PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
+        PLAY_TEXT = get_font(45).render("How many Players?", True, "White")
+        PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 200))
         SCREEN.blit(PLAY_TEXT, PLAY_RECT)
 
-        PLAY_BACK_BUTTON = Button(image=None, pos=(640, 460), 
+        PLAY_BACK_BUTTON = Button(image=None, pos=(640, 550), 
                             text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
 
-        PLAY_BACK_BUTTON.changeColor(PLAY_MOUSE_POS)
+        PLAY_BACK_BUTTON.change_color(PLAY_MOUSE_POS)
         PLAY_BACK_BUTTON.update(SCREEN)
 
         for event in pygame.event.get():
@@ -60,7 +60,7 @@ def play():
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if PLAY_BACK_BUTTON.checkForInput(PLAY_MOUSE_POS):
+                if PLAY_BACK_BUTTON.check_for_input(PLAY_MOUSE_POS):
                     main_menu()
 
         pygame.display.update()
