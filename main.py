@@ -1,5 +1,6 @@
 import pygame, sys
 from button import Button
+from questions import CATEGORIES, Question 
 
 pygame.init()
 
@@ -136,6 +137,7 @@ def name_input(num_players):
                     return names
     
         pygame.display.update()
+
 
 
 main_menu()
