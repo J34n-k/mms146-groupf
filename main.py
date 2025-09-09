@@ -138,6 +138,109 @@ def name_input(num_players):
     
         pygame.display.update()
 
+def game_grid(names):
+    categories = list(CATEGORIES.keys())
+    point_values = sorted(list(set(p for cat in CATEGORIES for p in CATEGORIES[cat])))
+    question_buttons = []
+    button_width = 200
+    button_height = 80
+    x_spacing = (1280 - len(categories) * button_width) / (len(categories) + 1)
+    y_spacing = (720 - (len(point_values) + 1) * button_height) / (len(point_values) + 1)
+    for i, category in enumerate(categories):
+        for j, points in enumerate(point_values):
+            if points in CATEGORIES[category]:
+                x = x_spacing + i * (button_width + x_spacing)
+                y = 100 + y_spacing + j * (button_height + y_spacing)
+                question_obj = CATEGORIES[category][points]
+                if question_obj.answered:
+                    base_color = "grey"
+                    hovering_color = "grey"
+                    text_input = ""
+                else:
+                    base_color = "#6d0707"
+                    hovering_color = "White"
+                    text_input = str(points)
+                button = Button(
+                    image=pygame.image.load("assets/Play Rect.png"),
+                    pos=(x, y),
+                    text_input=text_input,
+                    font=get_font(40),
+                    base_color=base_color,
+                    hovering_color=hovering_color
+                )
+                question_buttons.append({"button": button, "question_obj": question_obj})
+    while True:
+        SCREEN.blit(PLAY_BG, (0, 0))
+        GAME_GRID_MOUSE_POS = pygame.mouse.get_pos()
+        for i, category in enumerate(categories):
+            text = get_font(25).render(category, True, "White")
+            text_rect = text.get_rect(center=(x_spacing + i * (button_width + x_spacing), 70))
+            SCREEN.blit(text, text_rect)
+        for item in question_buttons:
+            if not item["question_obj"].answered:
+                item["button"].change_color(GAME_GRID_MOUSE_POS)
+            item["button"].update(SCREEN)
+        BACK_BUTTON = Button(image=None, pos=(640, 650), text_input="BACK", font=get_font(50), base_color="White", hovering_color="Green")
+        BACK_BUTTON.change_color(GAME_GRID_MOUSE_POS)
+        BACK_BUTTON.update(SCREEN)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if BACK_BUTTON.check_for_input(GAME_GRID_MOUSE_POS):
+                    play()
+                for item in question_buttons:
+                    if not item["question_obj"].answered and item["button"].check_for_input(GAME_GRID_MOUSE_POS):
+                        show_question(item["question_obj"])
+                        return game_grid(names)
+        pygame.display.update()
 
+def show_question(question_obj):
+    question = question_obj.question
+    answer = question_obj.answer
+    user_input = ""
+    input_active = True
+    input_box = pygame.Rect(490, 450, 300, 50)
+    input_font = get_font(30)
+    while True:
+        SCREEN.fill((0, 0, 0))
+        question_surface = get_font(30).render(question, True, "White")
+        question_rect = question_surface.get_rect(center=(640, 300))
+        SCREEN.blit(question_surface, question_rect)
+        pygame.draw.rect(SCREEN, "white" if input_active else "grey", input_box, 2)
+        text_surface = input_font.render(user_input, True, "White")
+        SCREEN.blit(text_surface, (input_box.x + 5, input_box.y + 5))
+        submit_button = Button(image=None, pos=(640, 550), text_input="SUBMIT", font=get_font(40), base_color="White", hovering_color="Green")
+        submit_button.change_color(pygame.mouse.get_pos())
+        submit_button.update(SCREEN)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if input_box.collidepoint(event.pos):
+                    input_active = True
+                else:
+                    input_active = False
+                if submit_button.check_for_input(pygame.mouse.get_pos()):
+                    if question_obj.check_answer(user_input):
+                        print("Correct!")
+                    else:
+                        print(f"Incorrect. The correct answer was: {answer}")
+                    return
+            if event.type == pygame.KEYDOWN and input_active:
+                if event.key == pygame.K_RETURN:
+                    if question_obj.check_answer(user_input):
+                        print("Correct!")
+                    else:
+                        print(f"Incorrect. The correct answer was: {answer}")
+                    return
+                elif event.key == pygame.K_BACKSPACE:
+                    user_input = user_input[:-1]
+                else:
+                    user_input += event.unicode
+        pygame.display.update()
 
 main_menu()
+
