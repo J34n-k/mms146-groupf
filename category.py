@@ -1,6 +1,9 @@
 '''
 The Category class collects the questions for each topic. It is also the superclass for topics which are the subclasses
 '''
+
+import Question from question
+
 class Category
   def __init__(self, topic_name, question)
     self.topic_name = topic_name           #This will be the chosen topic for the game.
