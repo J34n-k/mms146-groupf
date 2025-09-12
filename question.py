@@ -26,7 +26,10 @@ class Question:
         """
         self.answered = True
         return player_answer.strip().lower() == self.answer.strip().lower()
-
+    def mark_answered(self):
+        """Marks the question as answered."""
+        self.answered = True
+        
     def __str__(self):
         """String representation for debugging or display."""
         return f"{self.question} ({self.points} pts)"

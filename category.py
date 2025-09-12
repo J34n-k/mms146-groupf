@@ -5,21 +5,26 @@ The Category class collects the questions for each topic. It is also the supercl
 from question import Question
 
 class Category:
-  def __init__(self, topic_name, question):
-    self.topic_name = topic_name           #This will be the chosen topic for the game.
-    self.question = question               #This will be for the questions.
+    def __init__(self, topic_name: str):
+        self._topic_name = topic_name
+        self._questions = {}
 
-  def get_topic_name(self):
-      '''
-      Returns the name of the topic
-      '''
-      return self.topic_name
-  
-  def get_question(self):
-      '''
-      Returns the questions for that topic
-      '''
-      return self.question
+    def get_name(self) -> str:
+        """Return the category/topic name."""
+        return self._topic_name
+
+    def add_question(self, question: Question):
+        """Add a Question to this category, keyed by its point value."""
+        self._questions[int(question.points)] = question
+
+    def get_question(self, value: int):
+        """Return the Question for the given point value, or None."""
+        return self._questions.get(int(value))
+
+    def get_available_values(self):
+        """Return a sorted list of point values for questions not yet answered."""
+        return [v for v, q in sorted(self._questions.items()) if not q.answered]
+
 
 class Faculty(Category):      #This will inherit the attribute "question" from the Category class
   def __init__(self, name, role):

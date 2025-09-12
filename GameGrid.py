@@ -11,10 +11,10 @@ It also marks the ones that are already given to the players.
 class GameGrid:
     def __init__(self):
         self.__categories = []
-    
+
     def add_category(self, category):
         self.__categories.append(category)
-    
+
     def get_available_questions(self):
         available = {}
         for category in self.__categories:
@@ -22,7 +22,7 @@ class GameGrid:
             if available_vals:
                 available[category.get_name()] = available_vals
         return available
-    
+
     def mark_answered(self, category_name, value):
         for category in self.__categories:
             if category.get_name() == category_name:
@@ -30,5 +30,7 @@ class GameGrid:
                 if question:
                     question.mark_answered()
                     return True
-
         return False
+
+    def get_categories(self):
+        return list(self.__categories)

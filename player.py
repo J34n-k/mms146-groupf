@@ -52,7 +52,11 @@ class Player:
         """Resets the player's score and attempts to zero."""
         self.__score = 0
         self.__attempts = 0
-
+    
+    def reset_score(self):
+        self.__score = 0
+        self.__attempts = 0
+        
     def __str__(self):
         """String representation for debugging or display."""
         return f"Player: {self.__name}, Score: {self.__score}, Attempts: {self.__attempts}"
