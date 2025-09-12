@@ -2,7 +2,7 @@
 The Category class collects the questions for each topic. It is also the superclass for topics which are the subclasses
 '''
 
-import Question from question
+from question import Question
 
 class Category
   def __init__(self, topic_name, question)
