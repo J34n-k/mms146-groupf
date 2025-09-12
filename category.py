@@ -4,8 +4,8 @@ The Category class collects the questions for each topic. It is also the supercl
 
 from question import Question
 
-class Category
-  def __init__(self, topic_name, question)
+class Category:
+  def __init__(self, topic_name, question):
     self.topic_name = topic_name           #This will be the chosen topic for the game.
     self.question = question               #This will be for the questions.
 
@@ -13,7 +13,7 @@ class Category
       '''
       Returns the name of the topic
       '''
-      return self.topic_name = self.topic_name
+      return self.topic_name
   
   def get_question(self):
       '''
@@ -23,9 +23,9 @@ class Category
 
 class Faculty(Category):      #This will inherit the attribute "question" from the Category class
   def __init__(self, name, role):
-  super().__init__(question)
-  self.name = name
-  self.role = role
+    super().__init__(topic_name=Faculty, question=[])
+    self.name = name
+    self.role = role
 
   def get_name(self):
     '''
@@ -41,10 +41,10 @@ class Faculty(Category):      #This will inherit the attribute "question" from t
 
 class Facilities(Category):     #This will inherit the attribute "question" from the Category class
   def __init__(self, facility_no, facility_name, facility_use):
-  super().__init__(question)
-  self.facility_no = facility_no
-  self.facility_name = facility_name
-  self.facility_use = facility_use
+    super().__init__(topic_name=Faculty, question=[])
+    self.facility_no = facility_no
+    self.facility_name = facility_name
+    self.facility_use = facility_use
 
   def get_facility_no(self):
     '''
@@ -66,13 +66,13 @@ class Facilities(Category):     #This will inherit the attribute "question" from
 
 class History(Category):     #This will inherit the attribute "question" from the Category class
   def __init_(self, year, rank, first_program, physical_campus, symbol, global_organization):
-  super().__init__(question)
-  self.year = year
-  self.rank = rank
-  self.first_program = first_program
-  self.physical_campus = physical_campus
-  self.symbol = symbol
-  self.global_organization = global_organization
+    super().__init__(topic_name=Faculty, question=[])
+    self.year = year
+    self.rank = rank
+    self.first_program = first_program
+    self.physical_campus = physical_campus
+    self.symbol = symbol
+    self.global_organization = global_organization
 
   def get_year(self):
     '''
@@ -111,14 +111,14 @@ class History(Category):     #This will inherit the attribute "question" from th
     return self.global_organization
 
 class OnlineLearningSystem(Category):     #This will inherit the attribute "question" from the Category class
-  def __init__(self, platform, library, student_org, journal, live_platform, system)
-  super().__init__(question)
-  self.platform = platform
-  self.library = library
-  self.student_org = student_org
-  self.journal = journal
-  self.live_platform = live_platform
-  self.system = system
+  def __init__(self, platform, library, student_org, journal, live_platform, system):
+    super().__init__(topic_name=Faculty, question=[])
+    self.platform = platform
+    self.library = library
+    self.student_org = student_org
+    self.journal = journal
+    self.live_platform = live_platform
+    self.system = system
 
   def get_platform(self):
     '''
@@ -155,3 +155,4 @@ class OnlineLearningSystem(Category):     #This will inherit the attribute "ques
     Returns the system
     '''
     return self.system
+
